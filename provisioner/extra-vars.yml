@@ -1,0 +1,65 @@
+---
+# region where the nodes will live
+ec2_region: us-east-1
+
+# name prefix for all the VMs
+ec2_name_prefix: AAP2-Test
+
+# creates student_total of workbenches for the workshop
+student_total: 2
+
+# Set the right workshop type, like network, rhel or f5 (see above)
+workshop_type: rhel
+
+# Generate offline token to authenticate the calls to Red Hat's APIs
+# Can be accessed at https://access.redhat.com/management/api
+offline_token: "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJhZDUyMjdhMy1iY2ZkLTRjZjAtYTdiNi0zOTk4MzVhMDg1NjYifQ.eyJpYXQiOjE2NDY4NDE1NDgsImp0aSI6IjJmMDliY2ZmLTlhN2YtNDdlZi04NTU1LWM1Mjc4OWUwNTM1ZSIsImlzcyI6Imh0dHBzOi8vc3NvLnJlZGhhdC5jb20vYXV0aC9yZWFsbXMvcmVkaGF0LWV4dGVybmFsIiwiYXVkIjoiaHR0cHM6Ly9zc28ucmVkaGF0LmNvbS9hdXRoL3JlYWxtcy9yZWRoYXQtZXh0ZXJuYWwiLCJzdWIiOiJmOjUyOGQ3NmZmLWY3MDgtNDNlZC04Y2Q1LWZlMTZmNGZlMGNlNjpqdXN0aW4ub2JmdXNjYXRlIiwidHlwIjoiT2ZmbGluZSIsImF6cCI6ImNsb3VkLXNlcnZpY2VzIiwibm9uY2UiOiJkODBjMzYxYy0wZmNhLTRiNGItOGRmMS04NjEzMDc4Nzg2MDQiLCJzZXNzaW9uX3N0YXRlIjoiZGUxZjJkNjItODkxOS00NTNiLWJjNDItOTc3M2EwODM4YjUyIiwic2NvcGUiOiJvcGVuaWQgb2ZmbGluZV9hY2Nlc3MiLCJzaWQiOiJkZTFmMmQ2Mi04OTE5LTQ1M2ItYmM0Mi05NzczYTA4MzhiNTIifQ.SDzXBNowizUV2Jp7tFKhdKw7Wn-EqSv-mojLxiKO3jw"
+
+# Required for podman authentication to registry.redhat.io
+redhat_username: justin.obfuscate@gmail.com
+redhat_password: lilPenguin4u
+
+#####OPTIONAL VARIABLES
+
+# turn DNS on for control nodes, and set to type in valid_dns_type
+dns_type: aws
+
+# password for Ansible control node
+admin_password: lilPenguin4u
+
+# Sets the Route53 DNS zone to use for Amazon Web Services
+workshop_dns_zone: sandbox1056.opentlc.com
+
+# automatically installs Tower to control node
+controllerinstall: true
+
+# forces ansible.workshops collection to install latest edits every time
+developer_mode: true
+
+# SHA value of targeted AAP bundle setup files.
+provided_sha_value: ea2843fae672274cb1b32447c9a54c627aa5bdf5577d9a6c7f957efe68be8c01
+
+# Automation controller install setup command. Default: "./setup.sh -e gpgcheck=0" if undefined or empty
+controller_install_command: './setup.sh -e gpgcheck=0'
+
+# default vars for ec2 AMIs (ec2_info) are located in provisioner/roles/manage_ec2_instances/defaults/main/main.yml
+# select ec2_info AMI vars can be overwritten via ec2_xtra vars, e.g.:
+ec2_xtra:
+  satellite:
+    owners: 012345678910
+    filter: Satellite*
+    username: ec2-user
+    os_type: linux
+    size: r5b.2xlarge
+
+# Registry name to download execution environments
+ee_registry_name: registry.redhat.io
+
+# List of execution environments to download during controller installation:
+ee_images:
+   - "{{ ee_registry_name }}/ansible-automation-platform-21/ee-29-rhel8:latest"
+   - "{{ ee_registry_name }}/ee-supported-rhel8:latest"
+   - "{{ ee_registry_name }}/ansible-automation-platform-21/ee-minimal-rhel8:latest"
+
+# "Default execution environment" for controller
+ee_default_image: "{{ ee_registry_name }}/ee-supported-rhel8:latest"
