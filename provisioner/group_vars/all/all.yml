@@ -12,7 +12,7 @@ dns_information: "No errors with DNS"
 callback_information: "No issue with Ansible Controller callback"
 demo_information: "No errors with Demos"
 workshop_type: ""
-dns_type: aws
+dns_type: none
 valid_dns_type:
   - aws
   - none
@@ -35,7 +35,7 @@ valid_network_types:
   - juniper
   - multivendor
 doubleup: false
-attendance: true
+attendance: false
 security_console: qradar
 valid_security_console_types:
   - splunk
@@ -43,5 +43,5 @@ valid_security_console_types:
 create_cluster: false
 default_tower38_url: https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-3.8.0-1.tar.gz
 default_tower37_url: https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-3.7.3-1.tar.gz
-automation_hub: false
+automation_hub: true
 developer_mode: false

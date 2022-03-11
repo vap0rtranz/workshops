@@ -2,7 +2,7 @@
 - name: check if aap.tar.gz exists
   stat:
     path: "{{ playbook_dir }}/aap.tar.gz"
-    checksum_algorithm: sha256
+    #    checksum_algorithm: sha256
   register: stat_var
 
 - name: attempt to download specified AAP if we don't already have it
@@ -27,7 +27,7 @@
     checksum_algorithm: sha256
   register: stat_var
 
-- name: Verify sha256sum of aap.tar.gz
-  fail:
-    msg: "Failure, sha256sum does not match"
-  when: stat_var.stat.checksum != provided_sha_value
+  #- name: Verify sha256sum of aap.tar.gz
+  #fail:
+  #  msg: "Failure, sha256sum does not match"
+  #when: stat_var.stat.checksum != provided_sha_value
